@@ -11,33 +11,33 @@ module.exports = {
 
 // create user
 async function add(user) {
-	const [id] = await db('users')
+	const [id] = await db('user')
 		.insert(user)
 		.returning('id');
 
 	return findById(id);
 }
 
-// get all users
+// get all user
 function find() {
-	return db('users');
+	return db('user');
 }
 
-// get users by ID
+// get user by ID
 function findById(id) {
-	return db('users')
+	return db('user')
 		.where({ id })
 		.first();
 }
 
 // get user by filter
 function findBy(filter) {
-	return db('users').where(filter);
+	return db('user').where(filter);
 }
 
 // update user
 async function update(id, user) {
-	const edited = await db('users')
+	const edited = await db('user')
 		.where({ id })
 		.update(user);
 	return findById(id);
@@ -45,7 +45,7 @@ async function update(id, user) {
 
 // delete user
 function remove(id) {
-	return db('users')
+	return db('user')
 		.where({ id })
 		.del();
 }

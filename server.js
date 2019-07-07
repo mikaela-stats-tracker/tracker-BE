@@ -11,7 +11,7 @@ const server = express();
 middleware(server);
 
 server.use('/api/auth', authController);
-server.use('/api/users', authentication, userController);
+server.use('/api/user', userController);
 
 server.get('/', (req, res) => {
 	res
