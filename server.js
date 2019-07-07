@@ -2,10 +2,16 @@ require('dotenv').config();
 const express = require('express');
 
 const middleware = require('./middleware/config');
+const authentication = require('./middleware/authentication');
+
+const authController = require('./controllers/auth');
+const userController = require('./controllers/users');
 
 const server = express();
-
 middleware(server);
+
+server.use('/api/auth', authController);
+server.use('/api/users', authentication, userController);
 
 server.get('/', (req, res) => {
 	res
